@@ -1,0 +1,226 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+  }
+  
+  .container {
+    display: flex;
+    height: 100vh;
+    position: relative;
+  }
+  
+  .sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: transform 0.3s ease;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sidebar.collapsed {
+    transform: translateX(-220px);
+  }
+  
+  .toggle-sidebar {
+    position: absolute;
+    top: 20px;
+    left: 250px;
+    z-index: 100;
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: left 0.3s ease;
+  }
+  
+  .toggle-sidebar.collapsed {
+    left: 30px;
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 20px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn:active {
+    transform: translateY(0);
+  }
+  
+  .btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .zoom-controls, .page-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .zoom-value {
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    margin: 5px 0;
+  }
+  
+  #pageInfo {
+    color: white;
+    text-align: center;
+    margin: 10px 0;
+    padding: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  #pdfViewer {
+    max-width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+    border-radius: 4px;
+  }
+  
+  .canvas-container {
+    position: relative;
+    margin-top: 20px;
+  }
+  
+  .loading-spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: none;
+  }
+  
+  @keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  
+  .toolbar {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    background-color: #34495e;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    animation: slideDown 0.5s ease;
+  }
+  
+  @keyframes slideDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  .scale-buttons {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 5px;
+    border-radius: 4px;
+  }
+  
+  .scale-value {
+    color: white;
+    min-width: 60px;
+    text-align: center;
+  }
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 5px;
+    border-radius: 4px;
+  }
+  
+  .search-input {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 200px;
+    transition: all 0.3s ease;
+  }
+  
+  .search-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #3498db;
+    width: 250px;
+  }
+  
+  .search-info {
+    color: white;
+    font-size: 14px;
+    min-width: 80px;
+  }
+  
+  .text-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    opacity: 0.2;
+  }
+  
+  .text-layer > span {
+    position: absolute;
+    white-space: pre;
+    cursor: text;
+    transform-origin: 0% 0%;
+  }
+  
+  .text-layer .highlight {
+    background-color: #ffeb3b;
+    opacity: 0.4;
+  }
+  
+  .text-layer .highlight.selected {
+    background-color: #ff9800;
+    opacity: 0.6;
+  }

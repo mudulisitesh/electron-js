@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PDF Reader</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="node_modules/pdfjs-dist/build/pdf.js"></script>
+</head>
+<body>
+  <div class="container">
+    <button class="toggle-sidebar">☰</button>
+    <div class="sidebar">
+      <button id="openFile" class="btn">
+        <span>📁 Open PDF</span>
+      </button>
+      
+      <div class="zoom-controls">
+        <div class="scale-buttons">
+          <button id="zoomOut" class="btn">-</button>
+          <span class="scale-value">100%</span>
+          <button id="zoomIn" class="btn">+</button>
+        </div>
+        <button id="fitToWidth" class="btn">Fit to Width</button>
+        <button id="fitToPage" class="btn">Fit to Page</button>
+      </div>
+
+      <div class="page-controls">
+        <button id="prevPage" class="btn">◀ Previous</button>
+        <span id="pageInfo">Page: 1/1</span>
+        <button id="nextPage" class="btn">Next ▶</button>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="toolbar">
+        <button id="rotateCCW" class="btn">↶ Rotate Left</button>
+        <button id="rotateCW" class="btn">↷ Rotate Right</button>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search text..." class="search-input">
+            <button id="searchPrev" class="btn" disabled>◀</button>
+            <button id="searchNext" class="btn" disabled>▶</button>
+            <span id="searchInfo" class="search-info"></span>
+        </div>
+        <div class="canvas-container">
+        <canvas id="pdfViewer"></canvas>
+      </div>
+      <div class="loading-spinner"></div>
+    </div>
+  </div>
+  <script src="renderer.js"></script>
+</body>
+</html>
